@@ -1,12 +1,10 @@
-import { useState } from 'react'
+import { useState } from "react";
 
-import "./GlobalStyles/index.css"
-import { Header } from './components/Header'
+import "./GlobalStyles/index.css";
+import { Header } from "./components/Header";
 
 function App() {
-  return (
-   <Header/>
-  )
+  return <Header />;
 }
 
-export default App
+export default App;
