@@ -1,4 +1,5 @@
 import { PencilLine } from "phosphor-react";
+import Avatar from "../Avatar";
 
 import css from "./index.module.css";
 
@@ -10,9 +11,8 @@ const SideBar = () => {
   return (
     <aside className={css.sidebar}>
       <img className={css.imageBackground} src={imageUrl} />
-
       <div className={css.profile}>
-        <img className={css.userImage} alt={"userImage"} src={userImageUrl} />
+        <Avatar userImage={userImageUrl} alt="" />
         <strong className={css.userName}>username</strong>
         <span>webdevelop</span>
       </div>

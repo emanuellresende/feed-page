@@ -1,3 +1,4 @@
+import Avatar from "../Avatar";
 import Comment from "../Comment";
 import css from "./index.module.css";
 const userImageUrl = "https://github.com/emanuellresende.png";
@@ -6,8 +7,7 @@ const Posts = () => {
     <article className={css.posts}>
       <header>
         <div className={css.author}>
-          <img src={userImageUrl} alt="user" className={css.avatar} />
-
+          <Avatar userImage={userImageUrl} alt=""/>
           <div className={css.authorInfo}>
             <strong>Emanuel</strong>
             <span>Web Developer</span>
