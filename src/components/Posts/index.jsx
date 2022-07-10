@@ -1,3 +1,4 @@
+import Comment from "../Comment";
 import css from "./index.module.css";
 const userImageUrl = "https://github.com/emanuellresende.png";
 const Posts = () => {
@@ -36,6 +37,11 @@ const Posts = () => {
           <button type="submit">Comment</button>
         </footer>
       </form>
+      <div className={css.comments}>
+        <Comment />
+        <Comment />
+        <Comment />
+      </div>
     </article>
   );
 };
