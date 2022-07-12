@@ -13,7 +13,7 @@ const SideBar = () => {
       <img className={css.imageBackground} src={imageUrl} />
       <div className={css.profile}>
         <Avatar userImage={userImageUrl} alt="" />
-        <strong className={css.userName}>username</strong>
+        <strong className={css.userName}>Emanuel Melo</strong>
         <span>Web Developer</span>
       </div>
 
