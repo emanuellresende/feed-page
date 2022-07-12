@@ -30,6 +30,15 @@ const Posts = ({ author, content, publishedAt }) => {
   const handleChangeNewComment = () => {
     setNewComment(event.target.value);
   };
+
+  const deleteComment = ( commentToDelete ) => {
+    const newCommentWithoutDeleted = comments.filter(
+       comment =>  comment !== commentToDelete
+       
+    );
+    setComments(newCommentWithoutDeleted);
+  }
+  
   return (
     <article className={css.posts}>
       <header>
@@ -73,7 +82,7 @@ const Posts = ({ author, content, publishedAt }) => {
       </form>
       <div className={css.comments}>
         {comments.map((comment) => {
-          return <Comment key={comment} content={comment} />;
+          return <Comment key={comment} content={comment} onDeleteComment = { deleteComment } />;
         })}
       </div>
     </article>

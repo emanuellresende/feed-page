@@ -3,7 +3,10 @@ import Avatar from "../Avatar";
 import css from "./index.module.css";
 const userImageUrl = "https://github.com/emanuellresende.png";
 
-const Comment = ({ content }) => {
+const Comment = ({ content, onDeleteComment }) => {
+  const handleDeleteComment = () => {
+    onDeleteComment(content);
+  }
   return (
     <div className={css.comment}>
       <Avatar hasBorder={false} userImage={userImageUrl} alt="" />
@@ -16,7 +19,7 @@ const Comment = ({ content }) => {
                 Posted hour ago
               </time>
             </div>
-            <button title="Delete Comment">
+            <button title="Delete Comment" onClick={handleDeleteComment}>
               <Trash size={24} />
             </button>
           </header>
