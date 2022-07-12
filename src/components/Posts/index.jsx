@@ -28,6 +28,7 @@ const Posts = ({ author, content, publishedAt }) => {
   };
 
   const handleChangeNewComment = () => {
+    event.target.setCustomValidity("");
     setNewComment(event.target.value);
   };
 
@@ -39,6 +40,11 @@ const Posts = ({ author, content, publishedAt }) => {
     setComments(newCommentWithoutDeleted);
   }
   
+  const handleNewCommentInvalid = event => {
+    event.target.setCustomValidity("Please fill this field, By: Melo Developer");
+  }
+
+  const isDisabledButton = newComment.length === 0;
   return (
     <article className={css.posts}>
       <header>
@@ -75,9 +81,11 @@ const Posts = ({ author, content, publishedAt }) => {
           name="comment"
           onChange={handleChangeNewComment}
           value={newComment}
+          required
+         onInvalid={handleNewCommentInvalid}
         />
         <footer>
-          <button type="submit">Comment</button>
+          <button type="submit" disabled={isDisabledButton}>Comment</button>
         </footer>
       </form>
       <div className={css.comments}>
