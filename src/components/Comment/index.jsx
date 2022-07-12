@@ -3,7 +3,7 @@ import Avatar from "../Avatar";
 import css from "./index.module.css";
 const userImageUrl = "https://github.com/emanuellresende.png";
 
-const Comment = () => {
+const Comment = ({ content }) => {
   return (
     <div className={css.comment}>
       <Avatar hasBorder={false} userImage={userImageUrl} alt="" />
@@ -20,7 +20,7 @@ const Comment = () => {
               <Trash size={24} />
             </button>
           </header>
-          <p>macaco</p>
+          <p>{content}</p>
         </div>
         <footer>
           <button title="Reply">

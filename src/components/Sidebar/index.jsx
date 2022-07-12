@@ -14,7 +14,7 @@ const SideBar = () => {
       <div className={css.profile}>
         <Avatar userImage={userImageUrl} alt="" />
         <strong className={css.userName}>username</strong>
-        <span>webdevelop</span>
+        <span>Web Developer</span>
       </div>
 
       <footer>

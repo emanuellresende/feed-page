@@ -1,46 +1,80 @@
+import { format, formatDistanceToNow } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
+import { useState } from "react";
+
 import Avatar from "../Avatar";
 import Comment from "../Comment";
 import css from "./index.module.css";
-const userImageUrl = "https://github.com/emanuellresende.png";
-const Posts = () => {
+
+const Posts = ({ author, content, publishedAt }) => {
+  const [comments, setComments] = useState(["You are very top"]);
+  const [newComment, setNewComment] = useState("");
+  const publishedDateFormatted = format(
+    publishedAt,
+    "d  'de'  LLLL 'as'  HH:mm'h'",
+    {
+      locale: ptBR,
+    }
+  );
+  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSuffix: true,
+  });
+
+  const handleCreateNewComment = () => {
+    event.preventDefault();
+    setComments([...comments, newComment]);
+    setNewComment("");
+  };
+
+  const handleChangeNewComment = () => {
+    setNewComment(event.target.value);
+  };
   return (
     <article className={css.posts}>
       <header>
         <div className={css.author}>
-          <Avatar userImage={userImageUrl} alt=""/>
+          <Avatar userImage={author.avatarUrl} alt="" />
           <div className={css.authorInfo}>
-            <strong>Emanuel</strong>
-            <span>Web Developer</span>
+            <strong>{author.name}</strong>
+            <span>{author.role}</span>
           </div>
         </div>
 
-        <time title="11 de maio" dataTime={"09/07/2022 00:26"}>
-          Posted hour ago
+        <time
+          title={publishedDateFormatted}
+          dataTime={publishedAt.toISOString()}
+        >
+          {publishedDateRelativeToNow}
         </time>
       </header>
 
       <div className={css.content}>
-        <p>Melo subiu um post</p>
-        <p>testa ai zezao</p>
-        <p>
-          <a href="">mcmelao</a>
-        </p>
-        <p>
-          <a href="">mcmelao</a>
-        </p>
+        {content.map((item) => {
+          if (item.type === "paragraph") {
+            return <p key={item.content}>{item.content}</p>;
+          } else if (item.type === "link") {
+            return <p key={item.content}>{item.content}</p>;
+          }
+        })}
       </div>
 
-      <form className={css.commentForm}>
+      <form className={css.commentForm} onSubmit={handleCreateNewComment}>
         <strong>Leave your comment</strong>
-        <textarea placeholder="Leave a comment" />
+        <textarea
+          placeholder="Leave a comment"
+          name="comment"
+          onChange={handleChangeNewComment}
+          value={newComment}
+        />
         <footer>
           <button type="submit">Comment</button>
         </footer>
       </form>
       <div className={css.comments}>
-        <Comment />
-        <Comment />
-        <Comment />
+        {comments.map((comment) => {
+          return <Comment key={comment} content={comment} />;
+        })}
       </div>
     </article>
   );
